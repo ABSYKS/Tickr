@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4C1306474309236C40730DE82713FB550B9C1F88",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4C1306474309236C40730DE82713FB550B9C1F88" : 0,
+    "5895663D08D51326C15AB2BF5181CCDADBC9F593" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "820F7D7C-F5AC-4012-8448-06392AF6B534",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4C1306474309236C40730DE82713FB550B9C1F88" : "TickrApp\/",
+    "5895663D08D51326C15AB2BF5181CCDADBC9F593" : "..\/..\/Downloads\/ParseServerStarterProject-5"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TickrApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TickrApp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ABSYKS\/Tickr.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4C1306474309236C40730DE82713FB550B9C1F88"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ABSYKS\/HealthState.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5895663D08D51326C15AB2BF5181CCDADBC9F593"
+    }
+  ]
+}
