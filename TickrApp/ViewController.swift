@@ -8,29 +8,44 @@
 
 import UIKit
 
-var completed = [String]()
-var estimates = [String]()
-var completedEstimates = [String]()
-var completed1 = [String]()
-var finalEst = [String]()
-var objects = [String]();
 
+var completed = [String]()
+var estimates = [Int]()
+var completedEstimates = [Int]()
+var completed1 = [String]()
+var finalEst = [Int]()
+var objects = [String]();
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var month: UILabel!
     @IBOutlet weak var day: UILabel!
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet var table: UITableView!
     @IBOutlet weak var complete: UIProgressView!
+    @IBOutlet weak var sprintTotal: UILabel!
+    let storyCellColor = UIColor.init(red: 204/255, green: 0/255, blue: 102/255, alpha: 1)
+    let pinkColor = UIColor.init(red: 255/255, green: 0/255, blue: 127/255, alpha: 1)
+    let orangeColor = UIColor.init(red: 255/255, green: 171/255, blue: 0/255, alpha: 1)
+    let darkGray = UIColor.init(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        circleGenerator(135)
-        circleGenerator(205)
-        circleGenerator(275)
+        UITabBar.appearance().barTintColor = darkGray
+        circleGenerator(128, y: UIColor.grayColor(), z: (M_PI * 2), w: 1.0)
+        circleGenerator(128, y: UIColor.greenColor(), z: (M_PI * 1.5), w: 1.5)
+        circleGenerator(198, y: UIColor.grayColor(), z: (M_PI * 2), w: 1.0)
+        circleGenerator(198, y: orangeColor, z: (M_PI * 0.3), w: 1.5)
+        circleGenerator(268, y: UIColor.grayColor(), z: (M_PI * 2), w: 1.0)
+        circleGenerator(268, y: pinkColor, z: (M_PI * 0.75), w: 1.5)
+            }
+    override func viewDidAppear(animated: Bool) {
+
+        let sum = estimates.reduce(0, combine: +)
+        sprintTotal.text = String(sum)
         uploadProgress()
         if(objects.count > 0){
-        let longpress = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPressGestureRecognized(_:)))
-        table.addGestureRecognizer(longpress)
+            let longpress = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPressGestureRecognized(_:)))
+            table.addGestureRecognizer(longpress)
         }
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -66,6 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         default: "N/A"
         break;
         }
+
     }
     
     func uploadProgress() {
@@ -161,7 +177,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
                 
                swap(&objects[indexPath!.row], &objects[Path.initialIndexPath!.row])
-                swap(&estimates[indexPath!.row], &estimates[Path.initialIndexPath!.row])
+               swap(&estimates[indexPath!.row], &estimates[Path.initialIndexPath!.row])
                 
                 table.moveRowAtIndexPath(Path.initialIndexPath!, toIndexPath: indexPath!)
                 
@@ -235,23 +251,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return objects.count
     }
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.table.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TableViewCell
         cell.title.text = objects[indexPath.row]as String!
-        cell.est.text = estimates[indexPath.row] as String!
+        
+        if(estimates[indexPath.row] != 0){
+        cell.est.text = String(estimates[indexPath.row] as Int!)
+        cell.backgroundColor = storyCellColor
+        cell.est.textColor = UIColor.whiteColor()
+        cell.title.textColor = UIColor.whiteColor()
+        cell.sdf.backgroundColor = UIColor.init(red: 41/255, green: 41/255, blue: 41/255, alpha: 1)
+        }
+        
+        else if(estimates[indexPath.row] == 0){
+            cell.est.text = ""
+            cell.sdf.backgroundColor = UIColor.init(red: 41/255, green: 41/255, blue: 41/255, alpha: 1)
+        }
+
         return cell
     }
     
+
     @IBAction func nextAction(sender: UIButton) {
         let titleString = objects[sender.tag]
         let firstAction =  "\(titleString)"
-        let estString = estimates[sender.tag]
-        let secondAction = "\(estString)"
         completed.append(firstAction)
-        completedEstimates.append(secondAction)
+        if(estimates[sender.tag] != 0){
+            let estString = estimates[sender.tag]
+            completedEstimates.append(estString)
+        }
+        else if(estimates[sender.tag] == 0){
+            completedEstimates.append(0)
+        }
+        
         let myPath = NSIndexPath(forRow: sender.tag, inSection: 0)
         objects.removeAtIndex(sender.tag)
-        estimates.removeAtIndex(sender.tag)
+        if(estimates[sender.tag] != 0){
+            estimates.removeAtIndex(sender.tag)
+        }
         table.deleteRowsAtIndexPaths([myPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         table.reloadData()
         self.uploadProgress()
@@ -261,16 +300,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return true
     }
     
-    func circleGenerator(let x: Int) {
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: x,y:72), radius: CGFloat(19), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+    /*
+ circle formula = ( M_PI * ( (completed/estimates) / 2) )
+ */
+    
+    
+    func circleGenerator(let x: Int, y: UIColor, z: Double, w: CGFloat) {
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: x,y:70), radius: CGFloat(19), startAngle: CGFloat(0), endAngle:CGFloat(z), clockwise: true)
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.CGPath
         //change the fill color
         shapeLayer.fillColor = UIColor.clearColor().CGColor
         //you can change the stroke color
-        shapeLayer.strokeColor = UIColor.grayColor().CGColor
+        shapeLayer.strokeColor = y.CGColor
         //you can change the line width
-        shapeLayer.lineWidth = 1.0
+        shapeLayer.lineWidth = w
         view.layer.addSublayer(shapeLayer)
     }
+
 }
+

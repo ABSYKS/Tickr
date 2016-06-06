@@ -23,49 +23,62 @@ func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> In
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = completedTsks.dequeueReusableCellWithIdentifier("cell2", forIndexPath: indexPath) as! completedTableViewCell
     cell.taskA.text = completed[indexPath.row]
-    cell.estA.text = completedEstimates[indexPath.row]
+ if(completedEstimates[indexPath.row] != 0){
+    cell.estA.text = String(completedEstimates[indexPath.row])
+    cell.backgroundColor = UIColor.purpleColor()
+    cell.estA.textColor = UIColor.whiteColor()
+    cell.taskA.textColor = UIColor.whiteColor()
+}
+
+ else if(completedEstimates[indexPath.row] == 0) {
+    cell.estA.text = ""
+    }
+    
     return cell
 }
+    override func viewDidAppear(animated: Bool) {
+        completedTsks.reloadData()
+        uploadProgress()
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let mnth = components.month
+        day.text! = String(components.day)
+        
+        switch(mnth) {
+        case 1: month.text! = "JAN"
+        break;
+        case 2: month.text! = "FEB"
+        break;
+        case 3: month.text! = "MAR"
+        break;
+        case 4: month.text! = "APR"
+        break;
+        case 5: month.text! = "MAY"
+        break;
+        case 6: month.text! = "JUN"
+        break;
+        case 7: month.text! = "JUL"
+        break;
+        case 8: month.text! = "AUG"
+        break;
+        case 9: month.text! = "SEP"
+        break;
+        case 10: month.text! = "OCT"
+        break;
+        case 11: month.text! = "NOV"
+        break;
+        case 12: month.text! = "DEC"
+            
+        default: "N/A"
+        break;
+
+    }
     
-    
-override func viewDidLoad() {
+func viewDidLoad() {
     //        self.label.text = self.labelString
     super.viewDidLoad()
-    uploadProgress()
-    let date = NSDate()
-    let calendar = NSCalendar.currentCalendar()
-    let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-    let mnth = components.month
-    day.text! = String(components.day)
-    
-    switch(mnth) {
-    case 1: month.text! = "JAN"
-    break;
-    case 2: month.text! = "FEB"
-    break;
-    case 3: month.text! = "MAR"
-    break;
-    case 4: month.text! = "APR"
-    break;
-    case 5: month.text! = "MAY"
-    break;
-    case 6: month.text! = "JUN"
-    break;
-    case 7: month.text! = "JUL"
-    break;
-    case 8: month.text! = "AUG"
-    break;
-    case 9: month.text! = "SEP"
-    break;
-    case 10: month.text! = "OCT"
-    break;
-    case 11: month.text! = "NOV"
-    break;
-    case 12: month.text! = "DEC"
-        
-    default: "N/A"
-    break;
-    }
+}
 
     
     // Do any additional setup after loading the view.
@@ -95,13 +108,20 @@ override func didReceiveMemoryWarning() {
     @IBAction func nextActionTwo(sender: UIButton) {
         let titleString = completed[sender.tag]
         let firstAction =  "\(titleString)"
-        let estString = completedEstimates[sender.tag]
-        let secondAction = "\(estString)"
         completed1.append(firstAction)
-        finalEst.append(secondAction)
+        if(completedEstimates[sender.tag] != 0){
+        let estString = completedEstimates[sender.tag]
+        finalEst.append(estString)
+        }
+        else if(completedEstimates[sender.tag] == 0){
+            finalEst.append(0)
+        }
+
         let myPath = NSIndexPath(forRow: sender.tag, inSection: 0)
         completed.removeAtIndex(sender.tag)
+        if(completedEstimates[sender.tag] != 0){
         completedEstimates.removeAtIndex(sender.tag)
+        }
         completedTsks.deleteRowsAtIndexPaths([myPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         completedTsks.reloadData()
         self.uploadProgress()
@@ -183,7 +203,7 @@ override func didReceiveMemoryWarning() {
             
             if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
                 
-                //                swap(&objects[indexPath!.row], &objects[Path.initialIndexPath!.row])
+                            swap(&objects[indexPath!.row], &objects[Path.initialIndexPath!.row])
                 
                 completedTsks.moveRowAtIndexPath(Path.initialIndexPath!, toIndexPath: indexPath!)
                 

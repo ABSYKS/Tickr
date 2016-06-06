@@ -20,12 +20,26 @@ class doneController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = finalTable.dequeueReusableCellWithIdentifier("cell3", forIndexPath: indexPath) as! doneTableCell
         cell.taskD.text = completed1[indexPath.row]
-        cell.estD.text = finalEst[indexPath.row]
+if(finalEst[indexPath.row] != 0){
+        cell.estD.text = String(finalEst[indexPath.row])
+        cell.estD.textColor = UIColor.whiteColor()
+        cell.backgroundColor = UIColor.purpleColor()
+        cell.taskD.textColor = UIColor.whiteColor()
+   }
+    
+else if(finalEst[indexPath.row] == 0) {
+    cell.estD.text = ""
+        }
+   
         return cell
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        finalTable.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

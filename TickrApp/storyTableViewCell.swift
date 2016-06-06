@@ -1,23 +1,19 @@
 //
-//  TableViewCell.swift
+//  storyTableViewCell.swift
 //  TickrApp
 //
-//  Created by Simon Bessey on 11/05/2016.
+//  Created by Simon Bessey on 30/05/2016.
 //  Copyright © 2016 Simon Bessey. All rights reserved.
 //
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var est: UILabel!
-    @IBOutlet weak var sdf: UIButton!
-    
-    
-    
+class storyTableViewCell: UITableViewCell {
+    @IBOutlet weak var taskLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -27,4 +23,3 @@ class TableViewCell: UITableViewCell {
     }
 
 }
-

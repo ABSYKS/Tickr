@@ -8,52 +8,43 @@
 
 import Foundation
 import UIKit
+var categories = [String]()
 //var sprint = [String]()
-class Controller: UIViewController, UIPopoverPresentationControllerDelegate {
-    
-    var myArray = ["1","2","3","4","5","6","7","8","9","0"]
+class Controller: UIViewController {
+    var timer = NSTimer()
+    @IBOutlet weak var plusCross: UIButton!
     @IBOutlet weak var task: UITextField!
     @IBOutlet weak var estimate: UITextField!
-
-    @IBOutlet var colorr: UIButton!
-       
-    // Override the iPhone behavior that presents a popover as fullscreen
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        // Return no adaptive presentation style, use default presentation behaviour
-        return .None
+    
+    func checkWhatsActive() {
+        if (task.text?.isEmpty == false)&&(self.estimate.editing == true){
+            plusCross.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+        }
     }
     
     @IBAction func add(sender: AnyObject) {
+    //let sprintGoal = estimate.text
+        if(estimate.text?.isEmpty == false)&&(task.text?.isEmpty == false) {
+        performSegueWithIdentifier("listView", sender: nil)
         let taskLabel = task.text
-        //let sprintGoal = estimate.text
+        objects.append(taskLabel!)
+        estimates.append(Int(estimate.text!)!)
+        categories.append(taskLabel!)
+        }
         
-        if(taskLabel?.isEmpty == true){
-                let alert = UIAlertController(title: "No task", message: "You have not entered a task", preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(defaultAction)
-                presentViewController(alert, animated: true, completion: nil)
-            }
-     
-            else if (taskLabel?.isEmpty == false) {
-                objects.append(taskLabel!)
-                performSegueWithIdentifier("listView", sender: nil)
-            }
-
-        if(estimate.text?.isEmpty == false) {
-        estimates.append(estimate.text!)
+        else if (estimate.text?.isEmpty == true) || (task.text?.isEmpty == true) {
+            performSegueWithIdentifier("listView", sender: nil)
         }
     }
     
 override func viewDidLoad() {
     super.viewDidLoad()
+    plusCross.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
+    timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target:self, selector: #selector(Controller.checkWhatsActive), userInfo: nil, repeats: true)
 }
 
 override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    }
-    
-    func setButtonColor (colors: UIColor) {
-        colorr.backgroundColor = colors
     }
 }
 
