@@ -13,6 +13,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var est: UILabel!
     @IBOutlet weak var sdf: UIButton!
+    @IBOutlet weak var button: UIButton!
     
     
     

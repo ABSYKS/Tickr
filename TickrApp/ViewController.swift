@@ -16,7 +16,7 @@ var completed1 = [String]()
 var finalEst = [Int]()
 var objects = [String]();
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+     
     @IBOutlet weak var month: UILabel!
     @IBOutlet weak var day: UILabel!
     @IBOutlet var table: UITableView!
@@ -251,11 +251,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return objects.count
     }
     
-    
+     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.table.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TableViewCell
         cell.title.text = objects[indexPath.row]as String!
+        cell.button.backgroundColor = UIColor.clearColor()
         
         if(estimates[indexPath.row] != 0){
         cell.est.text = String(estimates[indexPath.row] as Int!)

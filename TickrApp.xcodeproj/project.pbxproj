@@ -25,7 +25,6 @@
 		956867E51D05B7DE0031A28B /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956867D71D05B7DE0031A28B /* TextFieldsEffects.swift */; };
 		956867E61D05B7DE0031A28B /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956867D81D05B7DE0031A28B /* YokoTextField.swift */; };
 		956867E71D05B7DE0031A28B /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956867D91D05B7DE0031A28B /* YoshikoTextField.swift */; };
-		956867E81D05B7DE0031A28B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 956867DB1D05B7DE0031A28B /* Info.plist */; };
 		9590B2761CE3D01600039F25 /* NewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9590B2751CE3D01600039F25 /* NewController.swift */; };
 		9590B2781CE3D0BF00039F25 /* completedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9590B2771CE3D0BF00039F25 /* completedTableViewCell.swift */; };
 		9590B27C1CE514B200039F25 /* colorPalette.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9590B27B1CE514B200039F25 /* colorPalette.plist */; };
@@ -62,7 +61,6 @@
 		956867D81D05B7DE0031A28B /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
 		956867D91D05B7DE0031A28B /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
 		956867DA1D05B7DE0031A28B /* TextFieldEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEffects.h; sourceTree = "<group>"; };
-		956867DB1D05B7DE0031A28B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9590B2751CE3D01600039F25 /* NewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewController.swift; sourceTree = "<group>"; };
 		9590B2771CE3D0BF00039F25 /* completedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = completedTableViewCell.swift; sourceTree = "<group>"; };
 		9590B27B1CE514B200039F25 /* colorPalette.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = colorPalette.plist; sourceTree = "<group>"; };
@@ -133,19 +131,10 @@
 			path = TickrApp;
 			sourceTree = "<group>";
 		};
-		956867DC1D05B7DE0031A28B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				956867DB1D05B7DE0031A28B /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		956867DD1D05B7DE0031A28B /* TextFieldEffects */ = {
 			isa = PBXGroup;
 			children = (
 				956867D01D05B7DE0031A28B /* AkiraTextField.swift */,
-				956867D11D05B7DE0031A28B /* HoshiTextField.swift */,
 				956867D21D05B7DE0031A28B /* IsaoTextField.swift */,
 				956867D31D05B7DE0031A28B /* JiroTextField.swift */,
 				956867D41D05B7DE0031A28B /* KaedeTextField.swift */,
@@ -154,8 +143,8 @@
 				956867D71D05B7DE0031A28B /* TextFieldsEffects.swift */,
 				956867D81D05B7DE0031A28B /* YokoTextField.swift */,
 				956867D91D05B7DE0031A28B /* YoshikoTextField.swift */,
+				956867D11D05B7DE0031A28B /* HoshiTextField.swift */,
 				956867DA1D05B7DE0031A28B /* TextFieldEffects.h */,
-				956867DC1D05B7DE0031A28B /* Supporting Files */,
 			);
 			name = TextFieldEffects;
 			path = "../../../Downloads/TextFieldEffects-master 2/TextFieldEffects/TextFieldEffects";
@@ -222,7 +211,6 @@
 				950E3BD01CE3B5B6002AF05D /* LaunchScreen.storyboard in Resources */,
 				950E3BCD1CE3B5B6002AF05D /* Assets.xcassets in Resources */,
 				9590B27C1CE514B200039F25 /* colorPalette.plist in Resources */,
-				956867E81D05B7DE0031A28B /* Info.plist in Resources */,
 				950E3BC81CE3B5B6002AF05D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
